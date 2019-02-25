@@ -1,0 +1,56 @@
+<body>
+  <div id="ShowData">
+
+    <div class="container">
+      <div id="ShowData-row" class="row justify-content-center align-items-center">
+        <div id="ShowData-column" class="col-md-12">
+          <div id="ShowData-box" class="col-md-12">
+            <form id="ShowData-form" class="form">
+              <h3 class="text-center text-info">To Do List</h3>
+
+              <button type="button" routerLink="/create" class="btn btn-primary">Add New</button>
+
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                        <th colspan="4">Search :
+                          <input type="text" placeholder="Search by Location " [(ngModel)]="searchTerm">
+                        </th>
+                    </tr>
+                    <tr>
+                      <th>ID</th>
+                      <th>Task Name</th>
+                      <th>Description</th>
+                      <th>Assigned To</th>
+                      <th>Deadline</th>
+                      <th>Priority</th>
+                      <th>Status</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let todo of allTaskList | taskFilter: searchTerm"> 
+                      <td>{{todo.Id}}</td>
+                      <td>{{todo.TaskName}}</td>
+                      <td>{{todo.Description}}</td>
+                      <td>{{todo.AssignedTo}}</td>
+                      <td>{{todo.Deadline}}</td>
+                      <td>{{todo.Priority}}</td>
+                      <td>{{todo.Status}}</td>
+
+                      <td>
+
+                        <a (click)="delete(todo.Id)" > Delete</a>
+                        <a (click)="update(todo.Id)" > Edit</a>
+                      </td>
+                    </tr>
+
+                  </tbody>
+                </table>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>

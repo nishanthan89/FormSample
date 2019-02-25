@@ -1,0 +1,19 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #17a2b8;
+    height: 100vh;
+  }
+  #ShowData .container #ShowData-row #ShowData-column #ShowData-box {
+    margin-top: 20px;
+    width: 1500px;
+    height: 650px;
+    border: 1px solid #9C9C9C;
+    background-color: #EAEAEA;
+  }
+  #ShowData .container #ShowData-row #ShowData-column #ShowData-box #ShowData-form {
+    padding: 20px;
+  }
+  #ShowData .container #ShowData-row #ShowData-column #ShowData-box #ShowData-form #register-link {
+    margin-top: -85px;
+  }

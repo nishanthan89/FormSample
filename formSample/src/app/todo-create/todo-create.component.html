@@ -1,0 +1,99 @@
+<body>
+  <div id="createTask">
+    <input type="hidden"  id="Id" required [(ngModel)]="taskModel.Id" name="Id">
+    <div class="container">
+      <div id="createTask-row" class="row justify-content-center align-items-center">
+        <div id="createTask-column" class="col-md-6">
+          <div id="createTask-box" class="col-md-12">
+            <form id="createTask-form" class="form" #taskcreateForm="ngForm">
+              <h3 class="text-center text-info">Create Task For User</h3>
+
+              <div *ngIf="isCreated" class="alert alert-success">
+                    New task is created!
+              </div>
+
+              <div class="form-group">
+                <label for="taskname" class="text-info">Task Name:</label><br>
+                <input type="text" name="taskname" id="taskname"  minlength="4" required [(ngModel)]="taskModel.TaskName"  #taskName="ngModel" 
+                  class="form-control">
+
+                <div *ngIf="taskName.invalid && (taskName.dirty || taskName.touched)" class="alert alert-danger">
+
+                  <div *ngIf="taskName.errors.required">
+                    Task Name is required.
+                  </div>
+                  <div *ngIf="taskName.errors.minlength">
+                    Task Name must be at least 4 characters long.
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="description" class="text-info" aria-placeholder="Enter Task Description">Task
+                  Description:</label><br>
+                <input type="text" name="description" id="description" required [(ngModel)]="taskModel.Description" #Description="ngModel" 
+                  class="form-control">
+
+                  <div *ngIf="Description.invalid && (Description.dirty || Description.touched)" class="alert alert-danger">
+
+                    <div *ngIf="Description.errors.required">
+                      Task Description is required.
+                    </div>
+                    
+                  </div>
+
+
+              </div>
+              
+              <div class="form-group">
+                <label for="assignTo" class="text-info">Assign To:</label><br>
+                <select class="form-control form-control-lg" name="assignTo" id="assignTo"
+                   required [(ngModel)]="taskModel.UserID">
+                  <option *ngFor='let resource of resourceList' [value]="resource.UserId" >{{resource.UserName}}</option>
+                </select>
+              </div>
+
+
+              <div class="form-group">
+                <label for="dueDate" class="text-info">Due Date:</label><br>
+                <input type="date" name="dueDate" id="dueDate" required [(ngModel)]="taskModel.DueDate"
+                   class="form-control">
+              </div>
+              <div class="form-group">
+                <label for="priority" class="text-info">Priority:</label><br>
+                <select class="form-control form-control-lg" name="priority" id="priority"
+                  onchange="ChangecatList()" required [(ngModel)]="taskModel.Priority">
+                  <option value="">Choose... </option>
+                  <option value="High">High</option>
+                  <option value="Medium">Medium</option>
+                  <option value="Low">Low</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="status" class="text-info">Status:</label><br>
+                <select class="form-control form-control-lg" name="category" id="validationCustom03"
+                  onchange="ChangecatList()" required [(ngModel)]="taskModel.Status">
+                  <option value="">Choose... </option>
+                  <option value="High">Assigned</option>
+                  <option value="Medium">Started</option>
+                  <option value="Low">Progress</option>
+                  <option value="Low">Completed</option>
+                  <option value="Low">Rejected</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <!--Write submit function access the method in .ts file, that will check through service.ts-->
+                <input type="submit" [disabled]="taskcreateForm.form.invalid" (click)="save()" name="submit" class="btn btn-info btn-md" value="Create">
+                <input type="submit" routerLink="/" name="submit" class="btn btn-danger btn-md" value="Cancel">
+                <input type="submit" routerLink="/" name="submit" style="float: right" class="btn btn-success"
+                  value="Clear">
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
